@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recrutamento - Atendimento</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+}
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #0f172a;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+}
+h1 { text-align: center; }
+label { display: block; margin-top: 15px; font-weight: 600; }
+input, select, textarea {
+    width: 100%; padding: 10px; margin-top: 5px;
+    border-radius: 8px; border: none; outline: none;
+}
+textarea { min-height: 100px; }
+button {
+    margin-top: 20px; width: 100%; padding: 12px;
+    border: none; border-radius: 10px;
+    background: #22c55e; color: white;
+    font-size: 16px; cursor: pointer;
+}
+button:hover { background: #16a34a; }
+</style>
+</head>
+<body><div class="container">
+    <h1>📋 Recrutamento - Atendimento</h1><form id="form">
+    <h2>💳 Candidato</h2>
+
+    <label>Nome Completo</label>
+    <input type="text" id="nome" required>
+
+    <label>Nick de Staff</label>
+    <input type="text" id="staff" required>
+
+    <label>Nick de Player</label>
+    <input type="text" id="player" required>
+
+    <label>Idade</label>
+    <input type="number" id="idade" required>
+
+    <label>Horário de Turno</label>
+    <select id="turno" required>
+        <option value="">Selecione</option>
+        <optgroup label="MANHÃ">
+            <option>08:00 - 10:00</option>
+            <option>10:00 - 12:00</option>
+        </optgroup>
+        <optgroup label="TARDE">
+            <option>12:00 - 14:00</option>
+            <option>14:00 - 16:00</option>
+            <option>16:00 - 18:00</option>
+        </optgroup>
+        <optgroup label="NOITE">
+            <option>18:00 - 20:00</option>
+            <option>20:00 - 22:00</option>
+            <option>22:00 - 00:00</option>
+        </optgroup>
+    </select>
+
+    <h2>🧠 Atitude / Postura</h2>
+
+    <label>Por que você deseja entrar na equipe?</label>
+    <textarea id="motivo" required></textarea>
+
+    <label>Se não souber resolver um ticket, o que faria?</label>
+    <textarea id="ticket" required></textarea>
+
+    <h2>📚 Bíblia Roleplay</h2>
+
+    <label>DM</label>
+    <input type="text" id="dm" required>
+
+    <label>VDM</label>
+    <input type="text" id="vdm" required>
+
+    <label>TK</label>
+    <input type="text" id="tk" required>
+
+    <label>SAAV</label>
+    <input type="text" id="saav" required>
+
+    <label>MIX</label>
+    <input type="text" id="mix" required>
+
+    <label>PG</label>
+    <input type="text" id="pg" required>
+
+    <label>NRA</label>
+    <input type="text" id="nra" required>
+
+    <label>INA</label>
+    <input type="text" id="ina" required>
+
+    <button type="submit">Enviar Inscrição 🚀</button>
+</form>
+
+</div><script>
+const webhookURL = "https://discord.com/api/webhooks/1489727381882142722/ORiw1XWq3pc4KT5OyF89dhPG20_TU-simEm8mxxhbrQcIFtDTlfsC0nXC41O-IkszroS";
+
+document.getElementById("form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const data = {
+        content: "📥 **NOVA INSCRIÇÃO - ATENDIMENTO**\n\n" +
+        `👤 Nome: ${nome.value}\n` +
+        `🛡️ Staff: ${staff.value}\n` +
+        `🎮 Player: ${player.value}\n` +
+        `🎂 Idade: ${idade.value}\n` +
+        `⏰ Turno: ${turno.value}\n\n` +
+        `🧠 Motivo: ${motivo.value}\n\n` +
+        `🎫 Ticket: ${ticket.value}\n\n` +
+        `📚 DM: ${dm.value} | VDM: ${vdm.value} | TK: ${tk.value}\n` +
+        `SAAV: ${saav.value} | MIX: ${mix.value} | PG: ${pg.value}\n` +
+        `NRA: ${nra.value} | INA: ${ina.value}`
+    };
+
+    fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    })
+    .then(() => {
+        alert("Inscrição enviada com sucesso! 🚀");
+        document.getElementById("form").reset();
+    })
+    .catch(() => alert("Erro ao enviar. Verifique o webhook."));
+});
+</script></body>
+</html>
